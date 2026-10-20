@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Servicios y precios · Navaja Club</title>
+<meta name="description" content="Precios de corte, fade, barba y afeitado a navaja. Calcula tu cita al momento.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0c0c0e">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=1">
+</head><body data-page="servicios">
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="bar"><div class="wrap bar-in">
+<a class="brand" href="index.html" aria-label="Navaja Club, inicio"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#d6ff3f"/><g fill="none" stroke="#0c0c0e" stroke-width="3.2" stroke-linecap="round"><circle cx="15" cy="34" r="4.6"/><circle cx="33" cy="34" r="4.6"/><path d="M18 30 L32 12 M30 30 L16 12"/></g></svg><span>Navaja Club<small>barbería</small></span></a>
+<nav class="nav" id="nav" aria-label="Principal"><a href="index.html">Inicio</a><a href="servicios.html" class=on aria-current=page>Servicios</a><a href="galeria.html">Galería</a><a href="horario.html">Horario</a><a href="contacto.html">Contacto</a><a class="btn btn-lime nav-cta" href="contacto.html">Reservar</a></nav>
+<span class="pill" data-open-badge>Cargando…</span>
+<button class="menu-toggle" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú"><i></i><i></i><i></i></button>
+</div></header>
+<div class="progress" aria-hidden="true"></div>
+<main id="main">
+
+<section class="page-h"><div class="wrap"><p class="eyebrow reveal">Servicios y precios</p><h1 class="reveal">Precios claros, sin sorpresas</h1><p class="lead reveal">Elige servicio y extras, y te decimos cuánto cuesta y cuánto dura.</p></div></section>
+<section class="sec tight"><div class="wrap">
+<div class="calc reveal" data-calc>
+<div class="calc-form"><h2>Arma tu cita</h2>
+<fieldset><legend>1. Servicio principal</legend><div class="opts">
+<label><input type="radio" name="svc" value="0" checked><span>Corte clásico</span></label>
+<label><input type="radio" name="svc" value="1"><span>Fade y degradado</span></label>
+<label><input type="radio" name="svc" value="2"><span>Barba y toalla caliente</span></label>
+<label><input type="radio" name="svc" value="3"><span>Corte + barba</span></label>
+<label><input type="radio" name="svc" value="4"><span>Afeitado a navaja</span></label>
+<label><input type="radio" name="svc" value="5"><span>Corte junior</span></label></div></fieldset>
+<fieldset><legend>2. Extras (opcional)</legend><div class="opts">
+<label><input type="checkbox" name="ex" value="4"><span>Arreglo de cejas <i>+4 €</i></span></label>
+<label><input type="checkbox" name="ex" value="8"><span>Limpieza facial <i>+8 €</i></span></label>
+<label><input type="checkbox" name="ex" value="5"><span>Masaje capilar <i>+5 €</i></span></label>
+<label><input type="checkbox" name="ex" value="3"><span>Cera o producto <i>+3 €</i></span></label></div></fieldset>
+<fieldset><legend>3. Barbero</legend><div class="opts">
+<label><input type="radio" name="bar" value="Cualquiera" checked><span>Me da igual</span></label>
+<label><input type="radio" name="bar" value="Dani"><span>Dani</span></label>
+<label><input type="radio" name="bar" value="Marcos"><span>Marcos</span></label>
+<label><input type="radio" name="bar" value="Álex"><span>Álex</span></label></div></fieldset>
+</div>
+<aside class="calc-out"><div class="dogcard"><svg class="man " viewBox="0 0 200 200" role="img" aria-label="Cliente satisfecho"><path d="M26 200 q0 -36 44 -42 h60 q44 6 44 42z" fill="#2b2e36"/><path d="M84 140 h32 v26 q-16 12 -32 0z" fill="#bb8157"/><path d="M84 160 l16 18 l16 -18" fill="none" stroke="#ffffff" stroke-opacity=".25" stroke-width="3"/><ellipse cx="47" cy="106" rx="9" ry="13" fill="#d9a073"/><ellipse cx="47" cy="106" rx="4" ry="7" fill="#bb8157" opacity=".5"/><ellipse cx="153" cy="106" rx="9" ry="13" fill="#d9a073"/><ellipse cx="153" cy="106" rx="4" ry="7" fill="#bb8157" opacity=".5"/><path d="M50 92 q0 -54 50 -54 q50 0 50 54 v20 q0 46 -50 54 q-50 -8 -50 -54z" fill="#d9a073"/><path d="M48 94 q-6 -62 52 -62 q58 0 52 62 q-6 -24 -14 -36 q-38 -16 -76 0 q-8 12 -14 36z" fill="#1d1a1a"/><path d="M48 94 q0 -18 6 -30 l6 22z M152 94 q0 -18 -6 -30 l-6 22z" fill="#1d1a1a" opacity=".4"/><path d="M50 108 q0 60 50 62 q50 -2 50 -62 q-8 30 -50 30 q-42 0 -50 -30z" fill="#1d1a1a" opacity=".32"/><rect x="68" y="80" width="22" height="5" rx="2.5" fill="#1d1a1a" transform="rotate(-4 79 82)"/><rect x="110" y="80" width="22" height="5" rx="2.5" fill="#1d1a1a" transform="rotate(4 121 82)"/><g class="eye"><circle cx="79" cy="96" r="5" fill="#1b1b1f"/><circle cx="77.5" cy="94.5" r="1.7" fill="#fff"/></g><g class="eye"><circle cx="121" cy="96" r="5" fill="#1b1b1f"/><circle cx="119.5" cy="94.5" r="1.7" fill="#fff"/></g><path d="M100 98 v16 q-7 5 -12 1" fill="none" stroke="#bb8157" stroke-width="3" stroke-linecap="round"/><path d="M86 134 q14 8 28 0" fill="none" stroke="#8a4a3a" stroke-width="3.4" stroke-linecap="round"/></svg></div>
+<p class="lbl">Tu cita orientativa</p><p class="total"><span data-total>14</span> €</p>
+<p class="sub" data-summary>Corte clásico</p><p class="time" data-time>Duración aprox. 30 min</p>
+<a class="btn btn-lime wide" data-wa href="contacto.html">Reservar esta cita</a><p class="fine">IVA incluido. El precio puede variar según el trabajo.</p></aside>
+</div></div></section>
+<section class="sec paper"><div class="wrap">
+<header class="sec-h reveal"><p class="eyebrow">Tarifas</p><h2>Todos los <em>precios</em></h2></header>
+<div class="table-wrap reveal"><table class="prices"><thead><tr><th>Servicio</th><th>Precio</th><th>Duración</th></tr></thead><tbody><tr id="clasico"><th scope="row"><b>Corte clásico</b><span>Tijera y máquina, lavado y peinado. El corte de siempre, bien hecho.</span></th><td>14 €</td><td>30 min</td></tr><tr id="fade"><th scope="row"><b>Fade y degradado</b><span>Degradado a medida: skin, low, mid o high. Acabado limpio.</span></th><td>16 €</td><td>35 min</td></tr><tr id="barba"><th scope="row"><b>Barba y toalla caliente</b><span>Perfilado, hidratación y toalla caliente para una barba cuidada.</span></th><td>10 €</td><td>25 min</td></tr><tr id="combo"><th scope="row"><b>Corte + barba</b><span>El combo completo en una sola cita. Ahorras tiempo y dinero.</span></th><td>22 €</td><td>55 min</td></tr><tr id="navaja"><th scope="row"><b>Afeitado a navaja</b><span>Ritual clásico: espuma, toalla caliente y navaja. Piel como nueva.</span></th><td>15 €</td><td>30 min</td></tr><tr id="junior"><th scope="row"><b>Corte junior</b><span>Hasta 12 años. Con paciencia, buen humor y sin lloros.</span></th><td>11 €</td><td>25 min</td></tr></tbody></table></div>
+<p class="fine center reveal">Extras: cejas 4 € · limpieza facial 8 € · masaje capilar 5 € · cera o producto 3 €</p></div></section>
+<section class="sec"><div class="wrap">
+<header class="sec-h reveal"><p class="eyebrow">Incluido siempre</p><h2>Todos los servicios <em>llevan</em></h2></header>
+<ul class="incl"><li class="reveal"><span>🚿</span>Lavado</li><li class="reveal"><span>💈</span>Asesoramiento</li><li class="reveal"><span>🧴</span>Peinado y producto</li><li class="reveal"><span>🔥</span>Toalla caliente</li><li class="reveal"><span>🥃</span>Bebida de cortesía</li><li class="reveal"><span>📱</span>Recordatorio de cita</li></ul></div></section>
+<section class="sec paper"><div class="wrap faq-wrap"><header class="sec-h reveal left"><p class="eyebrow">Dudas</p><h2>Preguntas <em>frecuentes</em></h2></header><div class="faq"><details class="reveal"><summary>¿Hace falta pedir cita?</summary><p>Recomendamos cita previa para no esperar. Si pasas sin cita, te encajamos en cuanto haya hueco libre.</p></details><details class="reveal"><summary>¿Cuánto dura un corte?</summary><p>Entre 30 y 45 minutos un corte, y 45–60 con barba. Te damos una hora estimada al reservar.</p></details><details class="reveal"><summary>¿Puedo elegir barbero?</summary><p>Sí. Al pedir cita dinos con quién prefieres cortarte y reservamos su hueco.</p></details><details class="reveal"><summary>¿Se puede pagar con tarjeta?</summary><p>Sí, aceptamos tarjeta, Bizum y efectivo.</p></details><details class="reveal"><summary>¿Cortáis a niños?</summary><p>Claro. El corte junior es para menores de 12 años y se hace con calma y buen humor.</p></details></div></div></section>
+</main>
+<footer class="foot"><div class="wrap">
+<div class="foot-top">
+<div class="foot-brand"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#d6ff3f"/><g fill="none" stroke="#0c0c0e" stroke-width="3.2" stroke-linecap="round"><circle cx="15" cy="34" r="4.6"/><circle cx="33" cy="34" r="4.6"/><path d="M18 30 L32 12 M30 30 L16 12"/></g></svg><div><b>Navaja Club</b><p>Barbería con cita previa, buen ambiente y cortes que se notan.</p></div></div>
+<div><h4>Visítanos</h4><p>Calle del Ejemplo, 8 · 28000 Madrid</p><p><a href="tel:+34600000001">600 000 001</a></p></div>
+<div><h4>Horario</h4><p>Martes a viernes<br>10:00–14:00 · 16:00–20:30</p><p>Sábados 10:00–15:00</p></div>
+<div><h4>Navega</h4><a href="index.html">Inicio</a><a href="servicios.html">Servicios</a><a href="galeria.html">Galería</a><a href="horario.html">Horario</a><a href="contacto.html">Contacto</a></div>
+</div>
+<p class="demo">Web de demostración. Nombre, teléfono y dirección son ficticios.</p>
+</div>
+<div class="giant" aria-hidden="true">NAVAJA CLUB</div>
+</footer>
+<div class="dock"><a href="tel:+34600000001">Llamar</a><a class="hot" href="contacto.html">Reservar</a><a href="horario.html">Horario</a></div>
+<script src="script.js?v=1"></script>
+</body></html>
