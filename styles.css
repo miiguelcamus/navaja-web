@@ -221,7 +221,7 @@ label{color:#3a3c44}input:not([type=radio]):not([type=checkbox]),select,textarea
 .sidepole{position:fixed;left:14px;top:50%;margin-top:-110px;width:34px;height:220px;z-index:40;display:none}
 .sp-bar{position:absolute;left:4px;top:0;bottom:0;width:14px;border:2px solid #0c0c0e;border-radius:9px;overflow:hidden;background:#fff;box-sizing:border-box;cursor:pointer}
 .sp-bar i{position:absolute;left:0;right:0;top:-60px;bottom:-60px;background:repeating-linear-gradient(135deg,#0c0c0e 0 10px,#fff 10px 20px,#d6ff3f 20px 30px);animation:spb 1.8s linear infinite}
-@keyframes spb{to{transform:translateY(42.43px)}}
+@keyframes spb{to{transform:translateY(45.25px)}}
 .sp-dot{position:absolute;left:1px;top:0;width:20px;height:20px;margin-top:-10px;border-radius:50%;background:#d6ff3f;border:2px solid #0c0c0e;box-sizing:border-box;box-shadow:0 3px 0 rgba(12,12,14,.2);transition:top .55s cubic-bezier(.3,1.4,.4,1);pointer-events:none}
 .sp-ticks{position:absolute;inset:0;pointer-events:none}
 .sp-t{pointer-events:auto;position:absolute;left:24px;width:8px;height:8px;margin-top:-4px;padding:0;border:0;border-radius:50%;background:#0c0c0e;opacity:.3;cursor:pointer;transition:opacity .2s,transform .2s}
@@ -246,6 +246,16 @@ label{color:#3a3c44}input:not([type=radio]):not([type=checkbox]),select,textarea
 .wipe.go{transform:translateY(0);transition:transform .38s cubic-bezier(.7,0,.3,1);pointer-events:auto}
 .wipe.leave{transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.3,1)}
 html.arrive .wipe{transform:translateY(0)!important;transition:none!important}
+
+/* Apartados más bajos (el header no cambia) + poste rojo/blanco/azul */
+main .sec{padding:clamp(22px,3vw,38px) 0}
+main .sec.tight{padding-top:12px}
+main .sec-h{margin-bottom:18px}main .sec-h.left{margin-bottom:16px}
+main .page-h{padding:clamp(18px,2.4vw,30px) 0 4px}
+main .status-sec{padding-top:14px}
+main .hero{padding:clamp(10px,1.6vw,22px) 0 clamp(14px,2.2vw,26px)}
+.cut{height:96px}
+.sp-bar i{background:repeating-linear-gradient(135deg,#e5392a 0 8px,#fff 8px 16px,#2b5bd7 16px 24px,#fff 24px 32px)}
 
 @media(prefers-reduced-motion:reduce){
   @view-transition{navigation:none}
