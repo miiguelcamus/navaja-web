@@ -91,7 +91,7 @@ n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(
   document.body.appendChild(lb);
   var art=lb.querySelector('.lb-art'),nm=lb.querySelector('p'),sv=lb.querySelector('small'),card=lb.querySelector('.lb-card'),cur=0;
   function vis(){return tiles.filter(function(t){return!t.classList.contains('hide')})}
-  function show(t){var v=vis();cur=v.indexOf(t);art.innerHTML=t.querySelector('.man').outerHTML;nm.textContent=t.querySelector('.cap b').textContent;sv.textContent=t.querySelector('.cap i').textContent;card.style.background=getComputedStyle(t).getPropertyValue('--bg');lb.classList.add('on')}
+  function show(t){var v=vis();cur=v.indexOf(t);art.innerHTML=t.querySelector('.ico').outerHTML;nm.textContent=t.querySelector('.cap b').textContent;sv.textContent=t.querySelector('.cap i').textContent;card.style.background=getComputedStyle(t).getPropertyValue('--bg');lb.classList.add('on')}
   function step(d){var v=vis();if(!v.length)return;show(v[(cur+d+v.length)%v.length])}
   tiles.forEach(function(t){t.addEventListener('click',function(){show(t)})});
   lb.querySelector('.x').addEventListener('click',function(){lb.classList.remove('on')});
