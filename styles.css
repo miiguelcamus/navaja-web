@@ -192,3 +192,64 @@ label{color:#3a3c44}input:not([type=radio]):not([type=checkbox]),select,textarea
 .giant{color:rgba(12,12,14,.06)}
 .door.is-open .dot{background:var(--lime)}
 .status em{background:none}
+
+/* ===== Extras: cabezas, tijeras, poste, transiciones ===== */
+/* 1 · Cabezas que miran al puntero */
+.man{--lx:0;--ly:0}
+.man .pp{transform:translate(calc(var(--lx)*3.2px),calc(var(--ly)*2.4px));transition:transform .14s ease-out}
+.man .hd{transform-box:view-box;transform-origin:100px 168px;transform:rotate(calc(var(--lx)*4deg)) translate(calc(var(--lx)*1.5px),calc(var(--ly)*1px));transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.man .hr{transform-box:view-box;transform-origin:100px 120px;transform:rotate(calc(var(--lx)*-2.6deg)) translate(calc(var(--lx)*-1.4px),calc(var(--ly)*-1.2px));transition:transform .7s cubic-bezier(.2,.8,.2,1) .04s}
+.man .br{transform:translate(calc(var(--lx)*.8px),calc(var(--ly)*.8px));transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+
+/* 3 · Tijeras que cortan la cinta */
+.cut{position:relative;height:120px;z-index:3;--cx:0px;--p:0;--o:0;--tip:73px}
+.rib{position:absolute;left:0;right:0;top:50%;height:40px;margin-top:-20px;background:#0c0c0e;color:#d6ff3f;display:flex;align-items:center;overflow:hidden;white-space:nowrap;font:800 13px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.rib span{padding-left:20px}
+.rib:after{content:"";position:absolute;left:0;right:0;top:50%;border-top:2px dashed rgba(214,255,63,.5)}
+.rib.full{clip-path:inset(0 0 0 var(--cx))}
+.rib.top,.rib.bot{transform-origin:var(--cx) 50%}
+.rib.top{clip-path:inset(0 calc(100% - var(--cx)) 50% 0);transform:rotate(calc(var(--p)*-2deg))}
+.rib.bot{clip-path:inset(50% calc(100% - var(--cx)) 0 0);transform:rotate(calc(var(--p)*2deg))}
+.scis{position:absolute;top:50%;left:0;width:78px;margin-top:-23.6px;overflow:visible;transform:translateX(calc(var(--cx) - var(--tip)));filter:drop-shadow(0 3px 0 rgba(12,12,14,.25))}
+.bl{transform-box:view-box;transform-origin:22px 20px}
+.bl.a{transform:rotate(calc(var(--o)*-13deg))}
+.bl.b{transform:rotate(calc(var(--o)*13deg))}
+@media(max-width:620px){.cut{height:96px;--tip:56px}.rib{height:32px;margin-top:-16px;font-size:11px}.scis{width:60px;margin-top:-18.2px}}
+
+/* 7 · Poste de barbero interactivo */
+.pole:hover{cursor:pointer}
+.sidepole{position:fixed;left:14px;top:50%;margin-top:-110px;width:34px;height:220px;z-index:40;display:none}
+.sp-bar{position:absolute;left:4px;top:0;bottom:0;width:14px;border:2px solid #0c0c0e;border-radius:9px;overflow:hidden;background:#fff;box-sizing:border-box;cursor:pointer}
+.sp-bar i{position:absolute;left:0;right:0;top:-60px;bottom:-60px;background:repeating-linear-gradient(135deg,#0c0c0e 0 10px,#fff 10px 20px,#d6ff3f 20px 30px);animation:spb 1.8s linear infinite}
+@keyframes spb{to{transform:translateY(42.43px)}}
+.sp-dot{position:absolute;left:1px;top:0;width:20px;height:20px;margin-top:-10px;border-radius:50%;background:#d6ff3f;border:2px solid #0c0c0e;box-sizing:border-box;box-shadow:0 3px 0 rgba(12,12,14,.2);transition:top .55s cubic-bezier(.3,1.4,.4,1);pointer-events:none}
+.sp-ticks{position:absolute;inset:0;pointer-events:none}
+.sp-t{pointer-events:auto;position:absolute;left:24px;width:8px;height:8px;margin-top:-4px;padding:0;border:0;border-radius:50%;background:#0c0c0e;opacity:.3;cursor:pointer;transition:opacity .2s,transform .2s}
+.sp-t:before{content:"";position:absolute;inset:-8px -8px -8px -3px}
+.sp-t.on{opacity:1;transform:scale(1.3)}
+.sp-t:after{content:attr(data-l);position:absolute;left:18px;top:50%;background:#0c0c0e;color:#d6ff3f;font:800 10px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:6px 9px;border-radius:6px;white-space:nowrap;opacity:0;transform:translate(-6px,-50%);pointer-events:none;transition:opacity .2s,transform .2s}
+.sp-t:hover:after,.sidepole:hover .sp-t.on:after,.sp-t:focus-visible:after{opacity:1;transform:translate(0,-50%)}
+@media(min-width:1180px){.sidepole{display:block}}
+
+/* 10 · Transición suave entre páginas */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:.3s cubic-bezier(.6,0,.2,1) both vtout}
+::view-transition-new(root){animation:.45s cubic-bezier(.2,.7,.2,1) both vtin}
+@keyframes vtout{to{opacity:0;transform:translateY(-12px)}}
+@keyframes vtin{from{opacity:0;transform:translateY(16px)}}
+.bar{view-transition-name:nvbar}
+.dock{view-transition-name:nvdock}
+.sidepole{view-transition-name:nvpole}
+::view-transition-group(nvbar),::view-transition-group(nvdock),::view-transition-group(nvpole){animation-duration:0s}
+.wipe{position:fixed;inset:0;z-index:300;pointer-events:none;transform:translateY(100%);background:#d6ff3f repeating-linear-gradient(135deg,rgba(12,12,14,.07) 0 14px,transparent 14px 28px)}
+.wipe:after{content:"NAVAJA CLUB";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:800 clamp(28px,7vw,64px)/1 'Bricolage Grotesque','Inter',sans-serif;letter-spacing:-.02em;color:#0c0c0e}
+.wipe.go{transform:translateY(0);transition:transform .38s cubic-bezier(.7,0,.3,1);pointer-events:auto}
+.wipe.leave{transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.3,1)}
+html.arrive .wipe{transform:translateY(0)!important;transition:none!important}
+
+@media(prefers-reduced-motion:reduce){
+  @view-transition{navigation:none}
+  .rib.top,.rib.bot,.scis{display:none}.rib.full{clip-path:none}
+  .sp-bar i{animation:none}.sp-dot{transition:none}
+  .wipe{display:none}
+}

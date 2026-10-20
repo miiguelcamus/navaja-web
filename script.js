@@ -112,3 +112,125 @@ n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(
 
 // Redes sociales de la demo (sin dirección real)
 document.querySelectorAll('[data-social]').forEach(function(a){a.addEventListener('click',function(e){if(a.getAttribute('href')==='#')e.preventDefault()})});
+
+/* ===== Extras: cabezas, tijeras, poste, transiciones ===== */
+(function(){
+  var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var raf=function(f){return requestAnimationFrame(f)};
+
+  /* 1 · Cabezas que siguen el puntero o el dedo */
+  (function(){
+    if(RM)return;
+    var heads=[].slice.call(document.querySelectorAll('.man'));
+    if(!heads.length)return;
+    var px=null,py=null,pend=0,idle;
+    function cl(v){return Math.max(-1,Math.min(1,v))}
+    function paint(){
+      pend=0;var vh=innerHeight,vw=innerWidth;
+      heads.forEach(function(h){
+        var r=h.getBoundingClientRect();
+        if(r.bottom<0||r.top>vh||r.width<20)return;
+        var lx=0,ly=0;
+        if(px!==null){lx=cl((px-(r.left+r.width/2))/(vw*.35));ly=cl((py-(r.top+r.height*.5))/(vh*.35))}
+        h.style.setProperty('--lx',lx.toFixed(3));h.style.setProperty('--ly',ly.toFixed(3));
+      });
+    }
+    function move(x,y){
+      px=x;py=y;if(!pend)pend=raf(paint);
+      clearTimeout(idle);idle=setTimeout(function(){px=null;if(!pend)pend=raf(paint)},3200);
+    }
+    addEventListener('pointermove',function(e){move(e.clientX,e.clientY)},{passive:true});
+    function tc(e){var t=e.touches[0];if(t)move(t.clientX,t.clientY)}
+    addEventListener('touchstart',tc,{passive:true});
+    addEventListener('touchmove',tc,{passive:true});
+    addEventListener('scroll',function(){if(px!==null&&!pend)pend=raf(paint)},{passive:true});
+    document.addEventListener('mouseleave',function(){px=null;if(!pend)pend=raf(paint)});
+  })();
+
+  /* 3 · Tijeras que cortan la cinta al hacer scroll */
+  (function(){
+    var c=document.querySelector('[data-cut]');
+    if(!c||RM)return;
+    var pend=0;
+    function upd(){
+      pend=0;
+      var r=c.getBoundingClientRect(),vh=innerHeight;
+      var p=Math.max(0,Math.min(1,(vh*.72-r.top)/(vh*.45)));
+      var W=c.clientWidth;
+      c.style.setProperty('--cx',(p*(W+12)).toFixed(1)+'px');
+      c.style.setProperty('--p',p.toFixed(3));
+      c.style.setProperty('--o',(p>0&&p<1?(Math.sin(p*70)+1)/2:0).toFixed(3));
+    }
+    function q(){if(!pend)pend=raf(upd)}
+    addEventListener('scroll',q,{passive:true});addEventListener('resize',q);upd();
+  })();
+
+  /* 7 · Poste interactivo: gira más rápido y marca la sección */
+  (function(){
+    function booster(el,hoverEl,scrollToo){
+      var anims=el.getAnimations?el.getAnimations():[];
+      if(RM||!anims.length)return;
+      var a=anims[0],cur=1,tgt=1,run=false,hov=false,scr=false,tm;
+      function set(){tgt=hov?7:(scr?4:1);if(!run){run=true;raf(step)}}
+      function step(){
+        cur+=(tgt-cur)*.1;
+        if(Math.abs(tgt-cur)<.03){cur=tgt;run=false}
+        a.updatePlaybackRate(cur);
+        if(run)raf(step);
+      }
+      hoverEl.addEventListener('pointerenter',function(){hov=true;set()});
+      hoverEl.addEventListener('pointerleave',function(){hov=false;set()});
+      if(scrollToo)addEventListener('scroll',function(){scr=true;set();clearTimeout(tm);tm=setTimeout(function(){scr=false;set()},180)},{passive:true});
+    }
+    var hp=document.querySelector('.pole');
+    if(hp)booster(hp.querySelector('i'),hp,false);
+
+    var sp=document.querySelector('.sidepole');
+    if(!sp)return;
+    booster(sp.querySelector('.sp-bar i'),sp.querySelector('.sp-bar'),true);
+    var secs=[].slice.call(document.querySelectorAll('main section'));
+    if(secs.length<2){sp.style.display='none';return}
+    var box=sp.querySelector('.sp-ticks'),dot=sp.querySelector('.sp-dot'),ticks=[];
+    secs.forEach(function(s,i){
+      var b=document.createElement('button');b.type='button';b.className='sp-t';
+      var e=s.querySelector('.eyebrow');
+      var lab=s.classList.contains('hero')?'Inicio':(e?e.textContent:(s.classList.contains('status-sec')?'Abierto ahora':'Sección '+(i+1)));
+      lab=lab.trim();b.dataset.l=lab;b.setAttribute('aria-label',lab);
+      b.style.top=(i/(secs.length-1)*100)+'%';
+      b.addEventListener('click',function(){s.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})});
+      box.appendChild(b);ticks.push(b);
+    });
+    var last=-1,pend=0;
+    function mark(){
+      pend=0;var y=innerHeight*.4,k=0;
+      secs.forEach(function(s,i){if(s.getBoundingClientRect().top<=y)k=i});
+      if(k===last)return;last=k;
+      dot.style.top=(k/(secs.length-1)*100)+'%';
+      ticks.forEach(function(t,i){t.classList.toggle('on',i===k)});
+    }
+    function q(){if(!pend)pend=raf(mark)}
+    addEventListener('scroll',q,{passive:true});addEventListener('resize',q);mark();
+  })();
+
+  /* 10 · Transición entre páginas (cortinilla si el navegador no soporta View Transitions) */
+  (function(){
+    if(RM||window.CSSViewTransitionRule)return;
+    var w=document.querySelector('.wipe');
+    if(!w)return;
+    try{sessionStorage.removeItem('nvgo')}catch(e){}
+    setTimeout(function(){document.documentElement.classList.remove('arrive')},2000);
+    raf(function(){raf(function(){document.documentElement.classList.remove('arrive');w.classList.remove('go');w.classList.add('leave')})});
+    addEventListener('pageshow',function(e){if(e.persisted){w.classList.remove('go');w.classList.remove('leave')}});
+    document.addEventListener('click',function(e){
+      var a=e.target.closest&&e.target.closest('a[href]');
+      if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+      if(a.target&&a.target!=='_self')return;
+      var u;try{u=new URL(a.href,location.href)}catch(x){return}
+      if(u.origin!==location.origin||!/\.html$|\/$/.test(u.pathname)||(u.pathname===location.pathname&&u.hash))return;
+      e.preventDefault();
+      try{sessionStorage.setItem('nvgo','1')}catch(x){}
+      w.classList.remove('leave');void w.offsetWidth;w.classList.add('go');
+      setTimeout(function(){location.href=a.href},380);
+    });
+  })();
+})();
